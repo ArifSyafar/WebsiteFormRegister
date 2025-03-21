@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrasi Seminar Teknologi</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss"></style>
+    <link rel="icon" type="image/x-icon" href="image/inilogo.png" />
+  </head>
+  <body class="bg-gray-100">
+    <!-- ini header -->
+    <header class="bg-blue-600 text-white text-center p-4">
+      <h1 class="text-xl font-bold">IT PNM Summit - Registrasi Seminar</h1>
+    </header>
+    <main class="flex flex-col md:flex-row p-6 gap-6">
+      <!-- ini sidebar -->
+      <!-- Sidebar gambar -->
+      <aside class="md:w-1/4 bg-white p-4 rounded shadow">
+        <!--  Gaambar -->
+        <img
+          src="image/Fradel and Spies.png"
+          alt="Seminar Teknologi"
+          class="cursor-pointer"
+          id="seminarImage"
+        />
+
+        <h2 class="text-lg font-semibold">Informasi Seminar</h2>
+        <p class="text-gray-700 text-sm">
+          <strong>Judul:</strong> Transformasi Digital & Inovasi Teknologi<br />
+          <strong>Tanggal:</strong> 15 April 2025<br />
+          <strong>Waktu:</strong> 09.00 - 15.00 WIB<br />
+          <strong>Lokasi:</strong> Auditoriom, Lantai 3 Politeknik Negeri
+          Madiun<br />
+          <strong>Pembicara:</strong>
+        </p>
+        <ul class="list-disc list-inside text-gray-700 text-sm mb-4">
+          <li>Gushan, M.Kom - CEO TechSol - Startup & Digital Business</li>
+          <li>Rina Wijayanti, M.T - Cybersecurity & Data Privacy</li>
+          <li>Hendri Kurniawan, M.Kom - AI & Machine Learning</li>
+        </ul>
+
+        <h2 class="text-lg font-semibold mt-4">Contact Person</h2>
+        <p class="text-gray-700 text-sm">
+          📞 <strong>WhatsApp:</strong> +62 812-3456-7890<br />
+          📧 <strong>Email:</strong>
+          <a
+            href="mailto:info@itpnmsummit.com"
+            class="text-blue-600 hover:underline"
+            >info@itpnmsummit.com</a
+          >
+          <br />
+          🌐
+          <strong>Website: </strong>
+          IT/PNM/Summit/Seminar/Teknologi/Nasional<br />
+        </p>
+      </aside>
+
+      <!-- Form Registrasi -->
+      <section class="md:w-3/4 bg-white p-6 rounded shadow">
+        <h2 class="text-lg font-semibold mb-4">Form Registrasi</h2>
+        <form id="regForm" class="space-y-4">
+          <div>
+            <label class="block font-medium">Nama Lengkap</label>
+            <input
+              type="text"
+              id="nama"
+              class="border p-2 w-full rounded"
+              placeholder="Minimal 3 karakter"
+            />
+            <p class="text-red-500 text-sm hidden" id="error-nama"></p>
+          </div>
+
+          <div>
+            <label class="block font-medium">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="border p-2 w-full rounded"
+              placeholder="Masukkan email"
+            />
+            <p class="text-red-500 text-sm hidden" id="error-email"></p>
+          </div>
+
+          <div>
+            <label class="block font-medium">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="border p-2 w-full rounded"
+              placeholder="Minimal 8 karakter"
+            />
+            <p class="text-red-500 text-sm hidden" id="error-password"></p>
+          </div>
+
+          <div>
+            <label class="block font-medium">Konfirmasi Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              class="border p-2 w-full rounded"
+              placeholder="Harus sama dengan password"
+            />
+            <p
+              class="text-red-500 text-sm hidden"
+              id="error-confirmPassword"
+            ></p>
+          </div>
+
+          <div>
+            <label class="block font-medium">Tanggal Lahir</label>
+            <input
+              type="date"
+              id="tanggalLahir"
+              class="border p-2 w-full rounded"
+            />
+            <p class="text-red-500 text-sm hidden" id="error-tanggalLahir"></p>
+          </div>
+
+          <div>
+            <label class="block font-medium">Nomor HP</label>
+            <input
+              type="text"
+              id="phone"
+              class="border p-2 w-full rounded"
+              placeholder="Format: +62xxxxxxxxxx"
+            />
+            <p class="text-red-500 text-sm hidden" id="error-phone"></p>
+          </div>
+
+          <button
+            type="submit"
+            id="submitBtn"
+            class="bg-blue-600 text-white px-4 py-2 rounded disabled:bg-gray-400"
+            disabled
+          >
+            Submit
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white text-center p-4 mt-6">
+      <p>&copy; ARIF SYAFARIAN | 243307005</p>
+    </footer>
+
+    <script>
+      const nama = document.getElementById("nama");
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+      const confirmPassword = document.getElementById("confirmPassword");
+      const tanggalLahir = document.getElementById("tanggalLahir");
+      const phone = document.getElementById("phone");
+      const submitBtn = document.getElementById("submitBtn");
+
+      const errors = {
+        nama: document.getElementById("error-nama"),
+        email: document.getElementById("error-email"),
+        password: document.getElementById("error-password"),
+        confirmPassword: document.getElementById("error-confirmPassword"),
+        tanggalLahir: document.getElementById("error-tanggalLahir"),
+        phone: document.getElementById("error-phone"),
+      };
+
+      function validateForm() {
+        let valid = true;
+
+        if (nama.value.trim().length < 3) {
+          errors.nama.innerText = "Nama harus minimal 3 karakter";
+          errors.nama.classList.remove("hidden");
+          valid = false;
+        } else {
+          errors.nama.classList.add("hidden");
+        }
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email.value)) {
+          errors.email.innerText = "Format email tidak valid";
+          errors.email.classList.remove("hidden");
+          valid = false;
+        } else {
+          errors.email.classList.add("hidden");
+        }
+
+        if (password.value.length < 8) {
+          errors.password.innerText = "Password harus minimal 8 karakter";
+          errors.password.classList.remove("hidden");
+          valid = false;
+        } else {
+          errors.password.classList.add("hidden");
+        }
+
+        if (confirmPassword.value !== password.value) {
+          errors.confirmPassword.innerText = "Konfirmasi password tidak cocok";
+          errors.confirmPassword.classList.remove("hidden");
+          valid = false;
+        } else {
+          errors.confirmPassword.classList.add("hidden");
+        }
+
+        if (
+          !tanggalLahir.value ||
+          new Date(tanggalLahir.value).getFullYear() > 2006
+        ) {
+          errors.tanggalLahir.innerText = "Harus lahir sebelum tahun 2006";
+          errors.tanggalLahir.classList.remove("hidden");
+          valid = false;
+        } else {
+          errors.tanggalLahir.classList.add("hidden");
+        }
+
+        const phonePattern = /^\+62[0-9]{8,11}$/;
+        if (!phonePattern.test(phone.value)) {
+          errors.phone.innerText =
+            "Nomor HP harus dimulai dengan +62 dan memiliki 8-11 digit angka";
+          errors.phone.classList.remove("hidden");
+          valid = false;
+        } else {
+          errors.phone.classList.add("hidden");
+        }
+
+        submitBtn.disabled = !valid;
+      }
+
+      document.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("input", validateForm);
+      });
+    </script>
+    <script>
+      document
+        .getElementById("regForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Mencegah reload halaman
+
+          // Validasi sebelum redirect
+          if (!submitBtn.disabled) {
+            window.location.href = "sukses.html";
+          }
+        });
+    </script>
+
+    <!-- untuk memperbesar gambar -->
+    <div
+      id="imageModal"
+      class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden"
+    >
+      <img id="modalImage" class="w-1/2 max-w-xl rounded shadow-lg" />
+    </div>
+    <!-- ini scrip untuk gambar saya -->
+    <script>
+      // Ambil elemen gambar
+      const seminarImage = document.getElementById("seminarImage");
+      const imageModal = document.getElementById("imageModal");
+      const modalImage = document.getElementById("modalImage");
+
+      // Saat gambar diklik, tampilkan modal dengan gambar yang diperbesar
+      seminarImage.addEventListener("click", () => {
+        modalImage.src = seminarImage.src;
+        imageModal.classList.remove("hidden");
+      });
+
+      // Tutup saat diklik di luar gambar
+      imageModal.addEventListener("click", () => {
+        imageModal.classList.add("hidden");
+      });
+    </script>
+  </body>
+</html>
